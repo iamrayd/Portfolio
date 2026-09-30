@@ -119,7 +119,7 @@
     border-radius: 50%;
     background: rgb(13 13 17 / 0.94);
     color: var(--accent);
-    cursor: pointer;
+    cursor: var(--cursor-crosshair);
   }
 
   .hud {
