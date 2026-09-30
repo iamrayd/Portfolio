@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { sectionNumber } from "@/data/navigation";
 import { experiences } from "@/data/portfolio";
 
 import styles from "./Experiences.module.css";
@@ -12,7 +13,7 @@ export function Experiences() {
   return (
     <Section id="experiences" labelledBy="experiences-title" tone="raised">
       <SectionHeader
-        index={3}
+        index={sectionNumber("experiences")}
         eyebrow="Experiences"
         title="The road"
         accent="so far."

@@ -12,6 +12,7 @@ import { Hero } from "@/components/sections/Hero/Hero";
 import { Projects } from "@/components/sections/Projects/Projects";
 import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
 import { WhyHireMe } from "@/components/sections/WhyHireMe/WhyHireMe";
+import { isSectionEnabled } from "@/data/navigation";
 import { allTechnologies, profile } from "@/data/portfolio";
 import { getGitHubSummary } from "@/lib/github";
 
@@ -39,7 +40,7 @@ export default async function HomePage() {
         <ScrollBand words={profile.focus} />
         <Experiences />
         <Projects recentRepos={github.recentRepos} />
-        <Testimonials />
+        {isSectionEnabled("testimonies") && <Testimonials />}
         <Contact />
       </main>
       <Footer />

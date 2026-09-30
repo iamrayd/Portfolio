@@ -5,6 +5,7 @@ import { TiltCard } from "@/components/motion/TiltCard";
 import { GitHubIcon } from "@/components/ui/BrandIcons";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { sectionNumber } from "@/data/navigation";
 import { profile, projects, type Project } from "@/data/portfolio";
 import type { Repository } from "@/lib/github";
 
@@ -21,7 +22,7 @@ export function Projects({ recentRepos }: ProjectsProps) {
   return (
     <Section id="projects" labelledBy="projects-title">
       <SectionHeader
-        index={4}
+        index={sectionNumber("projects")}
         eyebrow="Selected projects"
         title="Work that"
         accent="speaks."

@@ -2,6 +2,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { sectionNumber } from "@/data/navigation";
 import { allTechnologies, profile, techStack } from "@/data/portfolio";
 
 import styles from "./About.module.css";
@@ -25,7 +26,7 @@ export function About({ publicRepos }: AboutProps) {
       fullBleed={<StackMarquee />}
     >
       <SectionHeader
-        index={2}
+        index={sectionNumber("about-me")}
         eyebrow="About me"
         title="Hi, I'm"
         accent={`${profile.nickname}.`}

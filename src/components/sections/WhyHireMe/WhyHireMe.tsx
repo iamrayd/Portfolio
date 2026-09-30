@@ -3,6 +3,7 @@ import { ArrowUpRight, CodeXml, Layers3, Sparkles, Zap, type LucideIcon } from "
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { sectionNumber } from "@/data/navigation";
 import { strengths, type StrengthIcon } from "@/data/portfolio";
 
 import { SpotlightCard } from "./SpotlightCard";
@@ -19,7 +20,7 @@ export function WhyHireMe() {
   return (
     <Section id="why-hire-me" labelledBy="why-title" tone="raised">
       <SectionHeader
-        index={1}
+        index={sectionNumber("why-hire-me")}
         eyebrow="Why hire me"
         title="More than"
         accent="just code."
