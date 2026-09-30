@@ -1,0 +1,23 @@
+.perspective {
+  height: 100%;
+  perspective: 1200px;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover .glare {
+  opacity: 1;
+}

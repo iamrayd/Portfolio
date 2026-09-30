@@ -1,0 +1,42 @@
+.band {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: clamp(40px, 7vw, 96px) 0;
+  border-block: 1px solid var(--line);
+  background: rgb(7 7 10 / 0.7);
+}
+
+.row {
+  display: flex;
+  width: max-content;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 8.5vw, 132px);
+  line-height: 1.25;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.solid {
+  color: var(--fg);
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+}
+
+.star {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.55em;
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+}

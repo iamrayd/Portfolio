@@ -1,0 +1,22 @@
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Room for descenders and the slight rotation. */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.mask:not(:last-child) {
+  margin-right: 0.28em;
+}
+
+.word,
+.accent {
+  display: inline-block;
+  transform-origin: left bottom;
+}
+
+.accent {
+  color: var(--accent);
+}
