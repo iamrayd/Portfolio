@@ -45,17 +45,22 @@ export function FallingWords({ words }: FallingWordsProps) {
     });
     engineRef.current = engine;
     engine.start();
+    // Sprites drawn before the web font loaded would keep the fallback font.
+    void document.fonts.ready.then(() => engine.invalidateSprites());
 
     const onResize = () => engine.resize();
+    const onScroll = () => engine.notifyScroll();
     const onVisibilityChange = () => (document.hidden ? engine.stop() : engine.resume());
 
     window.addEventListener("resize", onResize);
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       engine.stop();
       engineRef.current = null;
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [words]);

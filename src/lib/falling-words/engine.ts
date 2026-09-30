@@ -10,6 +10,12 @@ const REFERENCE_WIDTH = 1440;
 const PIXELS_PER_WORD = 42000;
 const MIN_WORDS = 12;
 const MAX_WORDS = 44;
+/** Sprite canvas height and baseline, relative to the font size. */
+const SPRITE_HEIGHT = 1.5;
+const SPRITE_BASELINE = 1.15;
+const SPRITE_PADDING = 2;
+/** How long after the last scroll event the page counts as "scrolling". */
+const SCROLL_IDLE_MS = 150;
 
 interface FallingWord {
   text: string;
@@ -18,6 +24,7 @@ interface FallingWord {
   y: number;
   /** 0 = far away (small, dim, slow), 1 = close (large, bright, fast). */
   depth: number;
+  /** Whole pixels so pre-rendered sprites can be shared between words. */
   size: number;
   speed: number;
   sway: number;
@@ -63,6 +70,9 @@ export class FallingWordsEngine {
   private readonly options: EngineOptions;
 
   private words: FallingWord[] = [];
+  /** Pre-rendered word bitmaps; blitting these is far cheaper than fillText every frame. */
+  private sprites = new Map<string, HTMLCanvasElement>();
+  private dpr = 1;
   private particles: Particle[] = [];
   private shockwaves: Shockwave[] = [];
   private query = "";
@@ -73,6 +83,8 @@ export class FallingWordsEngine {
   private frameId = 0;
   private lastTime = 0;
   private running = false;
+  private frameCount = 0;
+  private scrollingUntil = 0;
 
   constructor(canvas: HTMLCanvasElement, options: EngineOptions) {
     const context = canvas.getContext("2d");
@@ -99,8 +111,15 @@ export class FallingWordsEngine {
     cancelAnimationFrame(this.frameId);
   }
 
+  /** Drops cached sprites, e.g. once the web font finishes loading. */
+  invalidateSprites(): void {
+    this.sprites.clear();
+  }
+
   resize(): void {
     const dpr = Math.min(window.devicePixelRatio || 1, MAX_DEVICE_PIXEL_RATIO);
+    if (dpr !== this.dpr) this.invalidateSprites();
+    this.dpr = dpr;
     const widthChanged = window.innerWidth !== this.width;
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -110,6 +129,14 @@ export class FallingWordsEngine {
 
     // Mobile browser bars change only the height while scrolling; keep words in place then.
     if (widthChanged || this.words.length === 0) this.populate();
+  }
+
+  /**
+   * Call on scroll. While the page scrolls the canvas redraws every other frame,
+   * leaving more of each frame's budget for smooth scrolling.
+   */
+  notifyScroll(): void {
+    this.scrollingUntil = performance.now() + SCROLL_IDLE_MS;
   }
 
   setQuery(query: string): void {
@@ -164,7 +191,7 @@ export class FallingWordsEngine {
     const depth = Math.random() ** 1.6; // bias toward the background
     const scale = Math.min(Math.max(this.width / REFERENCE_WIDTH, 0.65), 1);
     word.depth = depth;
-    word.size = (11 + depth * 15) * scale;
+    word.size = Math.round((11 + depth * 15) * scale);
     word.speed = 14 + depth * 58;
     word.sway = random(4, 14);
     word.phase = random(0, Math.PI * 2);
@@ -204,7 +231,9 @@ export class FallingWordsEngine {
     this.lastTime = time;
 
     this.update(delta, time / 1000);
-    this.draw();
+    this.frameCount++;
+    const scrolling = time < this.scrollingUntil;
+    if (!scrolling || this.frameCount % 2 === 0) this.draw();
     this.frameId = requestAnimationFrame(this.tick);
   };
 
@@ -254,9 +283,8 @@ export class FallingWordsEngine {
     const baseAlpha = 0.06 + word.depth * 0.2;
     const matches = this.query.length > 0 && word.key.startsWith(this.query);
 
-    context.font = this.font(word.size);
-
     if (word.flash > 0) {
+      context.font = this.font(word.size);
       context.globalAlpha = word.flash;
       context.fillStyle = ACCENT;
       context.shadowColor = ACCENT;
@@ -268,14 +296,21 @@ export class FallingWordsEngine {
     }
 
     if (!matches) {
+      const sprite = this.sprite(word.text, word.size);
       context.globalAlpha = baseAlpha;
-      context.fillStyle = TEXT;
-      context.fillText(word.text, word.x, word.y);
+      context.drawImage(
+        sprite,
+        word.x - SPRITE_PADDING,
+        word.y - word.size * SPRITE_BASELINE,
+        sprite.width / this.dpr,
+        sprite.height / this.dpr,
+      );
       context.globalAlpha = 1;
       return;
     }
 
     // Typed letters glow red, the remainder brightens so the target is obvious.
+    context.font = this.font(word.size);
     const split = rawPrefixLength(word.text, this.query.length);
     const head = word.text.slice(0, split);
     const tail = word.text.slice(split);
@@ -325,6 +360,30 @@ export class FallingWordsEngine {
     }
 
     context.globalAlpha = 1;
+  }
+
+  private sprite(text: string, size: number): HTMLCanvasElement {
+    const key = `${text}|${size}`;
+    const cached = this.sprites.get(key);
+    if (cached) return cached;
+
+    const sprite = document.createElement("canvas");
+    const context = sprite.getContext("2d");
+    if (!context) throw new Error("2D canvas context is not available");
+
+    context.font = this.font(size);
+    const width = context.measureText(text).width + SPRITE_PADDING * 2;
+    sprite.width = Math.ceil(width * this.dpr);
+    sprite.height = Math.ceil(size * SPRITE_HEIGHT * this.dpr);
+
+    // Resizing the canvas resets its state, so configure it afterwards.
+    context.scale(this.dpr, this.dpr);
+    context.font = this.font(size);
+    context.fillStyle = TEXT;
+    context.fillText(text, SPRITE_PADDING, size * SPRITE_BASELINE);
+
+    this.sprites.set(key, sprite);
+    return sprite;
   }
 
   private font(size: number): string {
