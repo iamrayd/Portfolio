@@ -33,15 +33,17 @@ Open http://localhost:3000.
 
 ## Environment variables
 
-| Name                   | Required | Description                                                       |
-| ---------------------- | -------- | ----------------------------------------------------------------- |
-| `RESEND_API_KEY`       | For form | API key from [resend.com](https://resend.com)                     |
-| `CONTACT_TO_EMAIL`     | For form | Inbox that receives contact messages                              |
-| `CONTACT_FROM_EMAIL`   | No       | Sender on a verified domain (defaults to `onboarding@resend.dev`) |
-| `GITHUB_TOKEN`         | No       | Raises the GitHub API rate limit                                  |
-| `NEXT_PUBLIC_SITE_URL` | No       | Canonical URL; Vercel's production URL is used when unset         |
+| Name                   | Required        | Description                                                       |
+| ---------------------- | --------------- | ----------------------------------------------------------------- |
+| `RESEND_API_KEY`       | For form        | API key from [resend.com](https://resend.com)                     |
+| `CONTACT_TO_EMAIL`     | For form        | Inbox that receives contact messages                              |
+| `CONTACT_FROM_EMAIL`   | No              | Sender on a verified domain (defaults to `onboarding@resend.dev`) |
+| `KV_REST_API_URL`      | For leaderboard | Upstash Redis REST URL (set by Vercel's Upstash integration)      |
+| `KV_REST_API_TOKEN`    | For leaderboard | Upstash Redis REST token                                          |
+| `GITHUB_TOKEN`         | No              | Raises the GitHub API rate limit                                  |
+| `NEXT_PUBLIC_SITE_URL` | No              | Canonical URL; Vercel's production URL is used when unset         |
 
-Without the Resend variables the site still works, but the form shows a friendly error instead of sending.
+Without the Resend variables the site still works, but the form shows a friendly error instead of sending. Likewise, without the Upstash variables the aim trainer still plays but the leaderboard shows as offline (local development uses an in-memory store).
 
 ## Editing content
 

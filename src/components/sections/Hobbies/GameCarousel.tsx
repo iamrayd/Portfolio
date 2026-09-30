@@ -91,6 +91,7 @@ export function GameCarousel() {
             <div
               key={game.id}
               className={styles.slot}
+              data-aim-solid
               data-pos={position}
               aria-roledescription="slide"
               aria-label={`${game.label}, ${index + 1} of ${games.length}`}
@@ -103,7 +104,7 @@ export function GameCarousel() {
         })}
       </div>
 
-      <div className={styles.controls}>
+      <div className={styles.controls} data-aim-solid>
         <button type="button" onClick={() => rotate(-1)} aria-label="Previous game">
           <ArrowLeft size={20} aria-hidden="true" />
         </button>
