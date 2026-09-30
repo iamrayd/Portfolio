@@ -1,0 +1,10 @@
+.section {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(88px, 11vw, 150px);
+  border-top: 1px solid var(--line);
+}
+
+.section[data-tone="raised"] {
+  background: rgb(13 13 17 / 0.82);
+}

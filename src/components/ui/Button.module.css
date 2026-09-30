@@ -1,0 +1,82 @@
+.button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 50px;
+  padding: 0 20px;
+  overflow: hidden;
+  border: 1px solid var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+}
+
+/* Fill that wipes in from the bottom on hover. */
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.button:hover::before,
+.button:focus-visible::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.button svg {
+  flex: none;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 40px rgb(255 45 45 / 0.25);
+}
+
+.primary::before {
+  background: var(--fg);
+}
+
+.primary:hover {
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.outline {
+  background: rgb(7 7 10 / 0.4);
+  border-color: var(--line-strong);
+  color: var(--fg);
+  backdrop-filter: blur(10px);
+}
+
+.outline::before {
+  background: var(--accent);
+}
+
+.outline:hover {
+  border-color: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
