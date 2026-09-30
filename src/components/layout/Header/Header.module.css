@@ -125,7 +125,7 @@
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   background: transparent;
-  cursor: var(--cursor-crosshair);
+  cursor: pointer;
 }
 
 .mobileMenu {

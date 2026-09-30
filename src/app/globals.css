@@ -28,7 +28,8 @@
   /* Matches the compact header; anchors (native and Lenis) land just below it. */
   --header-height: 68px;
 
-  /* Red crosshair cursor; the SVG stays crisp, the PNG covers browsers without SVG cursors. */
+  /* Red crosshair cursor, used in the Hobbies section.
+     The SVG stays crisp; the PNG covers browsers without SVG cursors. */
   --cursor-crosshair:
     url("/cursors/crosshair.svg") 16 16, url("/cursors/crosshair.png") 16 16, crosshair;
 }
@@ -88,20 +89,6 @@ a {
 button {
   font: inherit;
   color: inherit;
-}
-
-/* The crosshair replaces both the arrow and the pointing hand. */
-html,
-a,
-button,
-[role="button"],
-label {
-  cursor: var(--cursor-crosshair);
-}
-
-input,
-textarea {
-  cursor: text;
 }
 
 img,
