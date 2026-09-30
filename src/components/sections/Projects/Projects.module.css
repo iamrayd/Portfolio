@@ -1,0 +1,247 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Asymmetric bento: wide/narrow on one row, narrow/wide on the next. */
+.item {
+  display: flex;
+  min-width: 0;
+  grid-column: span 7;
+}
+
+.item:nth-child(4n + 2),
+.item:nth-child(4n + 3) {
+  grid-column: span 5;
+}
+
+.item > * {
+  flex: 1;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s;
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 30px 70px rgb(0 0 0 / 0.45);
+}
+
+.card:hover > :first-child {
+  transform: scale(1.03);
+}
+
+.info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px 26px 26px;
+  position: relative;
+  background: var(--bg-sunken);
+}
+
+.meta {
+  font-family: var(--font-accent);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.info h3 {
+  margin: 12px 0 8px;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+}
+
+.description {
+  flex: 1;
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+.links {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.links a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  transition:
+    color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-soft);
+}
+
+/* ---------- Latest on GitHub ---------- */
+
+.recent {
+  margin-top: clamp(64px, 8vw, 100px);
+}
+
+.recentHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.recentHeader h3 {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.recentHeader a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  transition: color 0.25s;
+}
+
+.recentHeader a:hover {
+  color: var(--fg);
+}
+
+.repoList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.repo {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 18px 40px 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.repoName {
+  font-family: var(--font-display);
+  font-size: 14px;
+  transition: color 0.25s;
+}
+
+.repo:hover .repoName {
+  color: var(--accent);
+}
+
+.repoDescription {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--fg-muted);
+}
+
+.repoMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--fg-faint);
+}
+
+.repoMeta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.repoArrow {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  color: var(--fg-faint);
+  transform: translateY(-50%);
+  transition:
+    color 0.25s,
+    transform 0.3s var(--ease-out);
+}
+
+.repo:hover .repoArrow {
+  color: var(--accent);
+  transform: translate(3px, calc(-50% - 3px));
+}
+
+@media (max-width: 900px) {
+  .repoList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .item:nth-child(n) {
+    grid-column: 1 / -1;
+  }
+
+  .info {
+    padding: 20px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
