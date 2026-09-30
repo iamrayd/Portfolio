@@ -1,0 +1,106 @@
+.section {
+  /* Side cards peek past the edges on narrow screens. */
+  overflow: hidden;
+}
+
+.carousel {
+  --card-width: min(360px, 80vw);
+  --card-height: 420px;
+}
+
+.stage {
+  position: relative;
+  height: calc(var(--card-height) + 60px);
+}
+
+.slot {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin-left: calc(var(--card-width) / -2);
+  /* 2D transforms only: cheaper to composite than a 3D scene over the animated canvas. */
+  transition:
+    transform 0.8s var(--ease-out),
+    filter 0.8s var(--ease-out),
+    opacity 0.8s var(--ease-out);
+}
+
+.slot[data-pos="front"] {
+  z-index: 3;
+  transform: none;
+}
+
+.slot[data-pos="left"],
+.slot[data-pos="right"] {
+  z-index: 1;
+  filter: blur(5px);
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.slot[data-pos="left"] {
+  transform: translate(-62%, -44px) scale(0.8);
+}
+
+.slot[data-pos="right"] {
+  transform: translate(62%, -44px) scale(0.8);
+}
+
+.slot[data-pos="left"]:hover,
+.slot[data-pos="right"]:hover {
+  filter: blur(3px);
+  opacity: 0.7;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg-raised);
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+
+.controls button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.status {
+  min-width: 120px;
+  font-family: var(--font-accent);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    --card-height: 400px;
+  }
+
+  .slot[data-pos="left"] {
+    transform: translate(-48%, -36px) scale(0.78);
+  }
+
+  .slot[data-pos="right"] {
+    transform: translate(48%, -36px) scale(0.78);
+  }
+}

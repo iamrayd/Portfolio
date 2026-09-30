@@ -1,0 +1,19 @@
+.badge {
+  width: 150px;
+  height: 150px;
+}
+
+.badge circle {
+  transition: stroke 0.2s;
+}
+
+.level {
+  font-family: var(--font-display);
+  font-size: 30px;
+}
+
+.elo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}

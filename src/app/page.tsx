@@ -9,6 +9,7 @@ import { About } from "@/components/sections/About/About";
 import { Contact } from "@/components/sections/Contact/Contact";
 import { Experiences } from "@/components/sections/Experiences/Experiences";
 import { Hero } from "@/components/sections/Hero/Hero";
+import { Hobbies } from "@/components/sections/Hobbies/Hobbies";
 import { Projects } from "@/components/sections/Projects/Projects";
 import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
 import { WhyHireMe } from "@/components/sections/WhyHireMe/WhyHireMe";
@@ -41,6 +42,7 @@ export default async function HomePage() {
         <Experiences />
         <Projects recentRepos={github.recentRepos} />
         {isSectionEnabled("testimonies") && <Testimonials />}
+        {isSectionEnabled("hobbies") && <Hobbies />}
         <Contact />
       </main>
       <Footer />

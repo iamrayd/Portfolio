@@ -6,6 +6,7 @@ const allSections = [
   { id: "projects", label: "Projects", enabled: true },
   // Hidden until real testimonials are added in portfolio.ts.
   { id: "testimonies", label: "Testimonies", enabled: false },
+  { id: "hobbies", label: "Hobbies", enabled: true },
   { id: "contact-me", label: "Contact Me", enabled: true },
 ] as const;
 

@@ -1,0 +1,84 @@
+.card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 48px 28px 40px;
+  text-align: center;
+}
+
+/* Dark disc fading into a soft halo of the game's color. Gradients only, no filters. */
+.orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 128%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(7 7 10 / 0.96) 0%,
+    rgb(7 7 10 / 0.9) 42%,
+    color-mix(in srgb, var(--game-accent) 20%, transparent) 56%,
+    color-mix(in srgb, var(--game-accent) 6%, transparent) 64%,
+    transparent 71%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.meta {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.meta span {
+  margin-inline: 4px;
+  color: var(--game-accent);
+}
+
+.title {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 0;
+}
+
+.footer {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 13px;
+}
+
+/* Shared text styles used inside card bodies. */
+.result {
+  min-height: 22px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
