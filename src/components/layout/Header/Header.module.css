@@ -46,8 +46,7 @@
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgb(13 13 17 / 0.5);
-  backdrop-filter: blur(12px);
+  background: rgb(13 13 17 / 0.85);
 }
 
 .link {
@@ -137,8 +136,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 110px var(--gutter) 32px;
-  background: rgb(7 7 10 / 0.97);
-  backdrop-filter: blur(24px);
+  background: rgb(7 7 10 / 0.98);
 }
 
 .mobileMenu nav {

@@ -28,8 +28,7 @@
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--panel);
-  backdrop-filter: blur(12px);
+  background: var(--bg-raised);
   transition:
     border-color 0.4s,
     box-shadow 0.4s;

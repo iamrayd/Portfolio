@@ -31,8 +31,7 @@
   min-height: 280px;
   padding: 32px;
   border: 1px solid var(--line);
-  background: var(--panel);
-  backdrop-filter: blur(14px);
+  background: var(--bg-raised);
   transition:
     border-color 0.3s,
     transform 0.4s var(--ease-out);
