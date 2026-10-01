@@ -180,6 +180,13 @@
   color: var(--fg-muted);
 }
 
+.reset {
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--fg-faint);
+}
+
 .rows {
   margin: 0;
   padding: 0;

@@ -21,6 +21,15 @@ export const MAX_HITS_PER_ROUND = Math.ceil(ROUND_MS / SPAWN_INTERVAL_MS) + MAX_
 
 export const LEADERBOARD_SIZE = 5;
 
+/** The leaderboard resets every midnight, Philippine time. */
+const LEADERBOARD_TIME_ZONE = "Asia/Manila";
+const dayFormat = new Intl.DateTimeFormat("en-CA", { timeZone: LEADERBOARD_TIME_ZONE });
+
+/** The leaderboard day as YYYY-MM-DD, e.g. "2026-10-01". */
+export function leaderboardDay(now = Date.now()): string {
+  return dayFormat.format(now);
+}
+
 export interface LeaderboardEntry {
   rank: number;
   /** Short anonymous tag derived from the visitor id, e.g. "#A3F2". */

@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import {
   LEADERBOARD_SIZE,
+  leaderboardDay,
   MAX_HITS_PER_ROUND,
   MAX_POINTS_PER_HIT,
   ROUND_MS,
@@ -47,13 +48,15 @@ function tagFor(visitorId: string): string {
   return `#${createHash("sha256").update(visitorId).digest("hex").slice(0, 4).toUpperCase()}`;
 }
 
+/** Today's top scores, plus where the visitor stands. */
 export async function readLeaderboard(
   store: ScoreStore,
   visitorId: string | null,
+  day = leaderboardDay(),
 ): Promise<Leaderboard> {
   const [top, standing] = await Promise.all([
-    store.top(LEADERBOARD_SIZE),
-    visitorId ? store.standing(visitorId) : null,
+    store.top(day, LEADERBOARD_SIZE),
+    visitorId ? store.standing(day, visitorId) : null,
   ]);
 
   const entries = top.map((record, index) => ({

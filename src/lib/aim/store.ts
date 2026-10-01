@@ -2,7 +2,10 @@ import "server-only";
 
 import { Redis } from "@upstash/redis";
 
-const SCORES_KEY = "aim:scores";
+/** Each day gets its own board; see `leaderboardDay`. */
+const scoresKey = (day: string) => `aim:scores:${day}`;
+/** Past boards are dropped automatically once they're old. */
+const DAY_BOARD_TTL_SECONDS = 2 * 24 * 60 * 60;
 const roundKey = (visitorId: string) => `aim:round:${visitorId}`;
 /** A started round must be submitted within this window. */
 const ROUND_TTL_SECONDS = 120;
@@ -18,11 +21,11 @@ export interface ScoreStore {
   startRound(visitorId: string, startedAt: number): Promise<void>;
   /** Returns when the visitor's pending round started, and consumes it. */
   takeRound(visitorId: string): Promise<number | null>;
-  /** Stores the score only if it beats the visitor's current best. */
-  saveBest(visitorId: string, score: number): Promise<void>;
-  top(count: number): Promise<ScoreRecord[]>;
-  /** Zero-based rank and best score, or null if the visitor has no score. */
-  standing(visitorId: string): Promise<{ rank: number; score: number } | null>;
+  /** Stores the score only if it beats the visitor's best for that day. */
+  saveBest(day: string, visitorId: string, score: number): Promise<void>;
+  top(day: string, count: number): Promise<ScoreRecord[]>;
+  /** Zero-based rank and best score that day, or null if the visitor has no score. */
+  standing(day: string, visitorId: string): Promise<{ rank: number; score: number } | null>;
 }
 
 function createRedisStore(redis: Redis): ScoreStore {
@@ -33,15 +36,17 @@ function createRedisStore(redis: Redis): ScoreStore {
     async takeRound(visitorId) {
       return redis.getdel<number>(roundKey(visitorId));
     },
-    async saveBest(visitorId, score) {
+    async saveBest(day, visitorId, score) {
+      const key = scoresKey(day);
       await redis
         .pipeline()
-        .zadd(SCORES_KEY, { gt: true }, { score, member: visitorId })
-        .zremrangebyrank(SCORES_KEY, 0, -(MAX_STORED_SCORES + 1))
+        .zadd(key, { gt: true }, { score, member: visitorId })
+        .zremrangebyrank(key, 0, -(MAX_STORED_SCORES + 1))
+        .expire(key, DAY_BOARD_TTL_SECONDS)
         .exec();
     },
-    async top(count) {
-      const flat = await redis.zrange<(string | number)[]>(SCORES_KEY, 0, count - 1, {
+    async top(day, count) {
+      const flat = await redis.zrange<(string | number)[]>(scoresKey(day), 0, count - 1, {
         rev: true,
         withScores: true,
       });
@@ -51,11 +56,11 @@ function createRedisStore(redis: Redis): ScoreStore {
       }
       return records;
     },
-    async standing(visitorId) {
+    async standing(day, visitorId) {
       const [rank, score] = await redis
         .pipeline()
-        .zrevrank(SCORES_KEY, visitorId)
-        .zscore(SCORES_KEY, visitorId)
+        .zrevrank(scoresKey(day), visitorId)
+        .zscore(scoresKey(day), visitorId)
         .exec<[number | null, number | null]>();
       return rank === null || score === null ? null : { rank, score: Number(score) };
     },
@@ -65,8 +70,12 @@ function createRedisStore(redis: Redis): ScoreStore {
 /** Local development stand-in so the game works without a database. */
 function createMemoryStore(): ScoreStore {
   const rounds = new Map<string, number>();
-  const scores = new Map<string, number>();
-  const sorted = () => [...scores].sort((a, b) => b[1] - a[1]);
+  const boards = new Map<string, Map<string, number>>();
+  const board = (day: string) => {
+    if (!boards.has(day)) boards.set(day, new Map());
+    return boards.get(day)!;
+  };
+  const sorted = (day: string) => [...board(day)].sort((a, b) => b[1] - a[1]);
 
   return {
     async startRound(visitorId, startedAt) {
@@ -77,17 +86,18 @@ function createMemoryStore(): ScoreStore {
       rounds.delete(visitorId);
       return startedAt;
     },
-    async saveBest(visitorId, score) {
+    async saveBest(day, visitorId, score) {
+      const scores = board(day);
       if (score > (scores.get(visitorId) ?? -1)) scores.set(visitorId, score);
     },
-    async top(count) {
-      return sorted()
+    async top(day, count) {
+      return sorted(day)
         .slice(0, count)
         .map(([visitorId, score]) => ({ visitorId, score }));
     },
-    async standing(visitorId) {
-      const rank = sorted().findIndex(([id]) => id === visitorId);
-      return rank === -1 ? null : { rank, score: scores.get(visitorId)! };
+    async standing(day, visitorId) {
+      const rank = sorted(day).findIndex(([id]) => id === visitorId);
+      return rank === -1 ? null : { rank, score: board(day).get(visitorId)! };
     },
   };
 }

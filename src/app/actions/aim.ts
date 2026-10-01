@@ -7,7 +7,7 @@ import {
   roundResultSchema,
   type RoundResult,
 } from "@/lib/aim/leaderboard";
-import type { Leaderboard } from "@/lib/aim/rules";
+import { leaderboardDay, type Leaderboard } from "@/lib/aim/rules";
 import { scoreStore } from "@/lib/aim/store";
 
 export type StartRoundResult = { ranked: boolean };
@@ -45,12 +45,14 @@ export async function submitAimRound(result: RoundResult): Promise<SubmitRoundRe
       return { status: "rejected" };
     }
 
-    const previous = await scoreStore.standing(visitorId);
-    await scoreStore.saveBest(visitorId, parsed.data.score);
+    // One day for the whole submission, so a round ending at midnight is compared consistently.
+    const day = leaderboardDay();
+    const previous = await scoreStore.standing(day, visitorId);
+    await scoreStore.saveBest(day, visitorId, parsed.data.score);
 
     return {
       status: "saved",
-      leaderboard: await readLeaderboard(scoreStore, visitorId),
+      leaderboard: await readLeaderboard(scoreStore, visitorId, day),
       isNewBest: !previous || parsed.data.score > previous.score,
     };
   } catch (error) {

@@ -8,17 +8,18 @@ const numberFormat = new Intl.NumberFormat("en-US");
 export function LeaderboardList({ board }: { board: BoardState }) {
   return (
     <div className={styles.board}>
-      <p className={styles.label}>Leaderboard</p>
+      <p className={styles.label}>Today&apos;s leaderboard</p>
       {board.status === "loading" && <p className={styles.note}>Loading scores…</p>}
       {board.status === "offline" && <p className={styles.note}>Leaderboard is offline.</p>}
       {board.status === "ready" && <Rows {...board.leaderboard} />}
+      <p className={styles.reset}>Resets daily at 12 AM, Philippine time</p>
     </div>
   );
 }
 
 function Rows({ entries, you }: { entries: LeaderboardEntry[]; you: LeaderboardEntry | null }) {
   if (entries.length === 0) {
-    return <p className={styles.note}>No scores yet. Set the first one.</p>;
+    return <p className={styles.note}>No scores yet today. Set the first one.</p>;
   }
 
   const youOutsideTop = you && !entries.some((entry) => entry.isYou);

@@ -43,7 +43,7 @@ Open http://localhost:3000.
 | `GITHUB_TOKEN`         | No              | Raises the GitHub API rate limit                                  |
 | `NEXT_PUBLIC_SITE_URL` | No              | Canonical URL; Vercel's production URL is used when unset         |
 
-Without the Resend variables the site still works, but the form shows a friendly error instead of sending. Likewise, without the Upstash variables the aim trainer still plays but the leaderboard shows as offline (local development uses an in-memory store).
+Without the Resend variables the site still works, but the form shows a friendly error instead of sending. The leaderboard resets daily at midnight Philippine time: each day's scores live under their own key and expire after two days. Likewise, without the Upstash variables the aim trainer still plays but the leaderboard shows as offline (local development uses an in-memory store).
 
 ## Editing content
 

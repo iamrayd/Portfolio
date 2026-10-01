@@ -98,9 +98,9 @@ function messageFor(phase: Phase, outcome: SubmitRoundResult | null): string {
 
   const you = outcome.leaderboard.you;
   if (outcome.isNewBest)
-    return you ? `New personal best. You're rank #${you.rank}.` : "New personal best.";
+    return you ? `New best today. You're rank #${you.rank}.` : "New best today.";
   return you
-    ? `Your best is still ${numberFormat.format(you.score)} (rank #${you.rank}).`
+    ? `Your best today is still ${numberFormat.format(you.score)} (rank #${you.rank}).`
     : "Score saved.";
 }
 
