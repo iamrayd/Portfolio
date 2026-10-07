@@ -121,37 +121,42 @@ export const strengths: Strength[] = [
   },
 ];
 
-// TODO: Replace with your verified work history before deploying.
 export const experiences: Experience[] = [
   {
-    role: "Full-Stack Developer",
-    company: "Company Name",
-    period: "2024 — Present",
+    role: "Full-Stack Web Developer",
+    company: "Ceres Summit Corporation",
+    period: "Jun 2026 — Present",
     highlights: [
-      "Built and shipped full-stack features end to end with TypeScript, React and Node.js.",
-      "Designed REST APIs and relational schemas that power internal dashboards.",
+      "Built AI-assisted internal websites that automate business processes.",
+      "Built a system that reads data from a custom ESP32 IoT transmitter plugged into a digital weighing scale.",
+      "Set up a Frappe Helpdesk app for internal ticketing, with notifications sent through a Telegram bot.",
+      "Designed Crystal Reports for purchase orders and other business forms.",
+      "Optimized SQL queries on the SAP Business One database, speeding up automated company reports.",
+      "Used AI engineering workflows to boost productivity and ship more each day.",
+      "Wrote Excel macros that cut down copy-pasting and human error.",
     ],
-    tags: ["TypeScript", "Next.js", "PostgreSQL"],
+    tags: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "SQL Server",
+      "ESP32",
+    ],
   },
   {
     role: "Web Developer",
-    company: "Company Name",
-    period: "2023 — 2024",
+    company: "OSL International Inc.",
+    period: "Sep 2025 — Dec 2025",
     highlights: [
-      "Developed a content management system with a C# backend and a custom frontend.",
-      "Improved page performance and accessibility across client websites.",
+      "Worked mostly on the frontend, with some backend work.",
+      "Developed a CRM website with an Angular frontend and a C# .NET backend.",
+      "Wrote a friendly user guide for the IBC Auto website.",
+      "Centered a div in Angular without flexbox, justify-content or align-items.",
     ],
-    tags: ["C#", "SCSS", "MySQL"],
-  },
-  {
-    role: "Freelance Developer",
-    company: "Independent",
-    period: "2022 — 2023",
-    highlights: [
-      "Delivered management systems for clinics, events and libraries.",
-      "Owned projects from requirements gathering to deployment.",
-    ],
-    tags: ["JavaScript", "Express.js", "MongoDB"],
+    tags: ["Angular", "C#", ".NET", "TypeScript"],
   },
 ];
 
