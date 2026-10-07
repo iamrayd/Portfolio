@@ -36,8 +36,8 @@ export default async function HomePage() {
       <Header />
       <main id="main">
         <Hero year={new Date().getFullYear()} />
-        <WhyHireMe />
         <About publicRepos={github.publicRepos} />
+        <WhyHireMe />
         <ScrollBand words={profile.focus} />
         <Experiences />
         <Projects recentRepos={github.recentRepos} />

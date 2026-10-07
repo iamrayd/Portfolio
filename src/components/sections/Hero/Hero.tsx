@@ -139,7 +139,7 @@ export function Hero({ year }: HeroProps) {
       </motion.div>
 
       <FadeIn className={styles.bottom} delay={lettersDone + 0.3}>
-        <a href="#why-hire-me" className={styles.scrollCue}>
+        <a href="#about-me" className={styles.scrollCue}>
           <span className={styles.scrollIcon}>
             <ArrowDown size={15} aria-hidden="true" />
           </span>

@@ -1,7 +1,7 @@
 /** Page sections in order. Set `enabled: false` to hide a section from the page and navbar. */
 const allSections = [
-  { id: "why-hire-me", label: "Why Hire Me", enabled: true },
   { id: "about-me", label: "About Me", enabled: true },
+  { id: "why-hire-me", label: "Why Hire Me", enabled: true },
   { id: "experiences", label: "Experiences", enabled: true },
   { id: "projects", label: "Projects", enabled: true },
   // Hidden until real testimonials are added in portfolio.ts.
