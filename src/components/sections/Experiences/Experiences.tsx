@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { sectionNumber } from "@/data/navigation";
 import { experiences } from "@/data/portfolio";
 
 import styles from "./Experiences.module.css";
@@ -13,7 +12,6 @@ export function Experiences() {
   return (
     <Section id="experiences" labelledBy="experiences-title" tone="raised">
       <SectionHeader
-        index={sectionNumber("experiences")}
         eyebrow="Experiences"
         title="The road"
         accent="so far."
@@ -22,10 +20,9 @@ export function Experiences() {
       />
 
       <Timeline>
-        {experiences.map((job, index) => (
+        {experiences.map((job) => (
           <Reveal as="li" key={`${job.company}-${job.period}`} className={styles.item}>
             <span className={styles.node} aria-hidden="true" />
-            <span className={styles.index}>{String(index + 1).padStart(2, "0")}</span>
             <p className={styles.period}>{job.period}</p>
             <div className={styles.body}>
               <p className={styles.company}>{job.company}</p>

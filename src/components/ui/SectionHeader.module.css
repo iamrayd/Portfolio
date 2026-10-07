@@ -8,9 +8,9 @@
   gap: 14px;
   margin-bottom: clamp(24px, 4vw, 44px);
   font-family: var(--font-accent);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -38,10 +38,10 @@
 
 .caption {
   flex: none;
-  max-width: 260px;
+  max-width: 340px;
   padding-bottom: 12px;
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: right;
   color: var(--fg-muted);
@@ -55,6 +55,7 @@
   }
 
   .caption {
+    max-width: none;
     padding: 0;
     text-align: left;
   }

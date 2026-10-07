@@ -33,7 +33,7 @@
 .item {
   position: relative;
   display: grid;
-  grid-template-columns: 6% calc(var(--rail-x) - 6%) 1fr auto;
+  grid-template-columns: var(--rail-x) 1fr auto;
   padding: 40px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -58,17 +58,10 @@
   box-shadow: 0 0 16px var(--accent);
 }
 
-.index {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--accent);
-}
-
 .period {
   padding-top: 2px;
-  font-family: var(--font-accent);
-  font-size: 13px;
-  letter-spacing: 0.06em;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--fg-muted);
 }
 
@@ -77,8 +70,8 @@
 }
 
 .company {
-  font-family: var(--font-accent);
   font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -152,7 +145,6 @@
     left: 0;
   }
 
-  .index,
   .arrow {
     display: none;
   }

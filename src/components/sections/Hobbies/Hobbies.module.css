@@ -87,7 +87,7 @@
 
 .status {
   min-width: 120px;
-  font-family: var(--font-accent);
+  font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.16em;
   text-align: center;

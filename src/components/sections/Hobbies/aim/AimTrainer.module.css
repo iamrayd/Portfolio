@@ -78,7 +78,7 @@
   position: absolute;
   left: 14px;
   top: -22px;
-  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 12px;
   white-space: nowrap;
   animation: burst-points 0.6s ease-out forwards;
@@ -117,10 +117,9 @@
 
 .label {
   margin-bottom: 18px;
-  font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -141,7 +140,7 @@
 
 .stats dd {
   margin: 4px 0 0;
-  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 20px;
   font-variant-numeric: tabular-nums;
 }
@@ -213,13 +212,13 @@
 }
 
 .rank {
-  font-family: var(--font-display);
+  font-weight: 500;
   font-size: 12px;
   color: var(--fg-muted);
 }
 
 .tag {
-  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.06em;
 }
@@ -236,7 +235,7 @@
 }
 
 .score {
-  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
   color: var(--fg);

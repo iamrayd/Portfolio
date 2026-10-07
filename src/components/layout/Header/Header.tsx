@@ -139,7 +139,6 @@ function MobileMenu({ onNavigate }: { onNavigate: (id: SectionId) => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 + index * 0.05 }}
           >
-            <span className={styles.mobileIndex}>{String(index + 1).padStart(2, "0")}</span>
             {label}
             <ArrowUpRight size={22} aria-hidden="true" />
           </motion.a>

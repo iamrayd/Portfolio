@@ -4,7 +4,7 @@ Personal portfolio of **Immanuel Ray Dingal**, full-stack developer. It's a dark
 
 **Highlights**
 
-- **Falling words.** Tech names drift down the background on a canvas. Type one anywhere on the page and its letters turn red as you go. Finish the word and it shatters. Touch devices get a floating keyboard button.
+- **Type to light up the toolkit.** Type any tool's name anywhere on the page and its letters turn red as you go; finish it and the logo chip glows red. Touch devices get a keyboard button in the Toolkit section.
 - **Motion.** Lenis smooth scrolling and masked word reveals on headings. There's hero parallax, a scroll-driven text band, 3D tilt cards and magnetic buttons. A timeline rail fills as you scroll.
 - **Full stack.** The contact form uses a Server Action with Zod validation, a honeypot field and rate limiting, and delivers mail through Resend. Live GitHub stats and recent repos are cached with ISR (hourly).
 - **Accessible.** It uses semantic landmarks, visible focus states and a skip link, and respects `prefers-reduced-motion`.
@@ -55,12 +55,12 @@ All copy lives in [`src/data/portfolio.ts`](src/data/portfolio.ts): profile, tec
 src/
   app/            routes, metadata files, server actions
   components/
-    effects/      falling words, cursor glow, scroll progress
+    effects/      cursor glow, scroll progress
     layout/       header, footer
     motion/       reusable animation primitives
     sections/     one folder per page section
     ui/           shared building blocks
   data/           portfolio content
   hooks/          client hooks
-  lib/            GitHub client, contact logic, falling-words engine
+  lib/            GitHub client, contact logic, word matcher, aim leaderboard
 ```

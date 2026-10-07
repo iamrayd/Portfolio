@@ -159,12 +159,6 @@
   color: var(--accent);
 }
 
-.mobileIndex {
-  font-family: var(--font-accent);
-  font-size: 12px;
-  color: var(--accent);
-}
-
 .mobileFooter {
   display: flex;
   justify-content: space-between;

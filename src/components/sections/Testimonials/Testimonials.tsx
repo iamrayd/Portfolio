@@ -1,6 +1,5 @@
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { sectionNumber } from "@/data/navigation";
 import { testimonials, type Testimonial } from "@/data/portfolio";
 
 import styles from "./Testimonials.module.css";
@@ -14,7 +13,6 @@ export function Testimonials() {
       fullBleed={<TestimonialMarquee items={testimonials} />}
     >
       <SectionHeader
-        index={sectionNumber("testimonies")}
         eyebrow="Testimonies"
         title="Words that"
         accent="matter."

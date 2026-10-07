@@ -1,0 +1,223 @@
+/* Stats row */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 0 0 clamp(48px, 6vw, 72px);
+  border-block: 1px solid var(--line);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 4px;
+  min-height: 150px;
+  padding: 24px 32px;
+}
+
+.stat:first-child {
+  padding-left: 0;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line);
+}
+
+.stat dt {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.2;
+}
+
+/* Tool groups */
+.groups {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 44px;
+}
+
+.groupHeading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.groupHeading span {
+  font-weight: 400;
+  color: var(--fg-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  font-size: 15px;
+  color: var(--fg);
+  transition:
+    border-color 0.3s,
+    color 0.3s,
+    background-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s var(--ease-out);
+}
+
+.chip:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+
+.logo {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: var(--brand);
+  color: var(--brand);
+  transition:
+    fill 0.3s,
+    color 0.3s;
+}
+
+/* Letters typed so far. */
+.typed {
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* A fully typed tool glows red, logo included, and stays lit. */
+.chip[data-lit="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 0 26px var(--accent-glow);
+}
+
+.chip[data-lit="true"] .logo {
+  fill: var(--accent);
+  color: var(--accent);
+}
+
+.chip[data-just-lit="true"] {
+  animation: light-up 0.6s var(--ease-out);
+}
+
+@keyframes light-up {
+  40% {
+    transform: scale(1.12);
+    box-shadow:
+      0 0 0 1px var(--accent),
+      0 0 48px var(--accent);
+  }
+}
+
+/* Progress and the touch keyboard button */
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 36px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.keyboardButton {
+  display: none;
+}
+
+.mobileInput {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  pointer-events: none;
+  font-size: 16px; /* Prevents iOS zoom on focus. */
+}
+
+@media (pointer: coarse) {
+  .keyboardButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1100px) {
+  .groups {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .group:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .groups {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .stat {
+    min-height: 110px;
+    padding: 16px 12px;
+  }
+
+  .stat dt {
+    font-size: 11px;
+  }
+
+  .stat dd {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  .chip {
+    font-size: 14px;
+  }
+}

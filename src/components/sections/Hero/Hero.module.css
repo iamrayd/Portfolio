@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-/* Vignette so the falling words fade out behind the name. */
+/* Soft vignette that frames the name. */
 .hero::before {
   content: "";
   position: absolute;
@@ -93,11 +93,6 @@
   text-transform: uppercase;
 }
 
-.roleMarker {
-  margin-right: 12px;
-  color: var(--accent);
-}
-
 .dash {
   padding-inline: 6px;
   color: var(--fg-faint);
@@ -125,7 +120,7 @@
   display: flex;
   gap: 16px;
   margin-bottom: 6px;
-  font-family: var(--font-accent);
+  font-weight: 500;
   font-size: 12px;
   line-height: 1.8;
   letter-spacing: 0.1em;
@@ -198,6 +193,11 @@
 .typeCue em {
   font-style: normal;
   color: var(--accent);
+}
+
+.typeCue:hover em {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .year {
@@ -330,13 +330,8 @@
   display: none;
 }
 
-/* On touch devices the cue points at the floating keyboard button instead. */
+/* Touch devices get a shorter cue; the toolkit has its own keyboard button. */
 @media (pointer: coarse) {
-  /* Leaves room for the floating keyboard button. */
-  .hero {
-    padding-bottom: 88px;
-  }
-
   .pointerCue {
     display: none;
   }

@@ -107,7 +107,6 @@ export function Hero({ year }: HeroProps) {
         <div className={styles.below}>
           <FadeIn className={styles.intro} delay={lettersDone}>
             <p className={styles.role}>
-              <span className={styles.roleMarker}>[01]</span>
               {profile.role} <span className={styles.dash}>—</span> {profile.focus.join(" · ")}
             </p>
             <p className={styles.tagline}>{profile.tagline}</p>
@@ -139,21 +138,21 @@ export function Hero({ year }: HeroProps) {
       </motion.div>
 
       <FadeIn className={styles.bottom} delay={lettersDone + 0.3}>
-        <a href="#about-me" className={styles.scrollCue}>
+        <a href="#experiences" className={styles.scrollCue}>
           <span className={styles.scrollIcon}>
             <ArrowDown size={15} aria-hidden="true" />
           </span>
           Scroll to explore
         </a>
-        <p className={styles.typeCue}>
+        <a href="#toolkit" className={styles.typeCue}>
           <Keyboard size={18} aria-hidden="true" />
           <span className={styles.pointerCue}>
-            Start typing to catch the <em>falling words</em>
+            Type any tool&apos;s name to light up my <em>toolkit</em>
           </span>
           <span className={styles.touchCue}>
-            Tap <em>⌨</em> to play
+            Light up my <em>toolkit</em>
           </span>
-        </p>
+        </a>
         <p className={styles.year}>Open to work — {year}</p>
       </FadeIn>
     </section>

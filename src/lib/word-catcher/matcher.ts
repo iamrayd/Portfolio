@@ -1,5 +1,5 @@
 /**
- * Pure matching logic for the "type to catch" game.
+ * Pure matching logic for the "type a tool to light it up" game.
  * Kept free of React and DOM so it is easy to reason about and test.
  */
 

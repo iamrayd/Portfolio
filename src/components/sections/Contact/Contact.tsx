@@ -5,7 +5,6 @@ import { RevealText } from "@/components/motion/RevealText";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
 import { Section } from "@/components/ui/Section";
 import { SectionEyebrow } from "@/components/ui/SectionHeader";
-import { sectionNumber } from "@/data/navigation";
 import { profile } from "@/data/portfolio";
 
 import styles from "./Contact.module.css";
@@ -43,7 +42,7 @@ export function Contact() {
 
   return (
     <Section id="contact-me" labelledBy="contact-title" className={styles.section}>
-      <SectionEyebrow index={sectionNumber("contact-me")} label="Contact me" />
+      <SectionEyebrow label="Contact me" />
 
       <div className={styles.grid}>
         <div>

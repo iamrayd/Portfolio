@@ -44,12 +44,6 @@
   opacity: 1;
 }
 
-.number {
-  font-family: var(--font-accent);
-  font-size: 13px;
-  color: var(--fg-muted);
-}
-
 .arrow {
   position: absolute;
   top: 26px;

@@ -45,7 +45,6 @@ export interface Profile {
   role: string;
   focus: string[];
   tagline: string;
-  bio: string;
   /** Year you started shipping real projects; drives the "years" stat. */
   startYear: number;
   githubUsername: string;
@@ -63,8 +62,7 @@ export const profile: Profile = {
   focus: ["JavaScript", "TypeScript", "Node.js"],
   tagline:
     "I turn ambitious ideas into fast, thoughtful web products — from the first pixel to the last API call.",
-  bio: "I'm Ray, a full-stack developer who builds across the entire product — interfaces people enjoy, APIs that hold up, and the databases underneath. My home turf is JavaScript, TypeScript and Node.js, but I pick the right tool for the job, from C# backends to ESP32 firmware.",
-  startYear: 2022,
+  startYear: 2025,
   githubUsername: "iamrayd",
   email: "",
   linkedin: "",

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { createWordIndex, trimToPrefix } from "@/lib/falling-words/matcher";
+import { createWordIndex, trimToPrefix } from "@/lib/word-catcher/matcher";
 
 /** How long to wait for more input when a match is also a prefix ("React" vs "React Native"). */
 const AMBIGUOUS_MATCH_DELAY_MS = 700;
@@ -33,7 +33,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
  */
 export function useWordCatcher(
   words: readonly string[],
-  onCatch: (word: string) => void,
+  onCatch?: (word: string) => void,
 ): WordCatcher {
   const index = useMemo(() => createWordIndex(words), [words]);
   const [buffer, setBuffer] = useState("");
@@ -65,7 +65,7 @@ export function useWordCatcher(
       updateBuffer("");
       setLastCaught(word);
       setCaught((previous) => new Set(previous).add(word));
-      onCatchRef.current(word);
+      onCatchRef.current?.(word);
 
       if (celebrationRef.current) clearTimeout(celebrationRef.current);
       celebrationRef.current = setTimeout(() => setLastCaught(null), CAUGHT_DISPLAY_MS);
