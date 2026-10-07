@@ -8,7 +8,7 @@
   gap: 14px;
   margin-bottom: clamp(24px, 4vw, 44px);
   font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -40,7 +40,7 @@
   flex: none;
   max-width: 260px;
   padding-bottom: 12px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-align: right;

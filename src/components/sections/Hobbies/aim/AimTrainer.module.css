@@ -133,7 +133,7 @@
 }
 
 .stats dt {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
@@ -149,7 +149,7 @@
 .message {
   min-height: 3.2em;
   margin-top: 16px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--fg-muted);
 }
 
@@ -176,13 +176,13 @@
 }
 
 .note {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--fg-muted);
 }
 
 .reset {
   margin-top: 14px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--fg-faint);
 }
@@ -200,7 +200,7 @@
   align-items: baseline;
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .row[data-separated="true"] {

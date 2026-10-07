@@ -54,7 +54,7 @@
 
 .meta {
   font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -69,7 +69,7 @@
 .description {
   flex: 1;
   margin-bottom: 24px;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
   color: var(--fg-muted);
 }
@@ -93,7 +93,7 @@
 .tags li {
   padding: 5px 10px;
   border: 1px solid var(--line);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--fg-muted);
 }
 
@@ -139,7 +139,7 @@
 
 .recentHeader h3 {
   font-family: var(--font-accent);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -150,7 +150,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--fg-muted);
   transition: color 0.25s;
 }
@@ -178,7 +178,7 @@
 
 .repoName {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 15px;
   transition: color 0.25s;
 }
 
@@ -190,7 +190,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--fg-muted);
 }
 
@@ -198,7 +198,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--fg-faint);
 }
 

@@ -19,7 +19,7 @@
 }
 
 .bio p {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.9;
   color: var(--fg-muted);
 }
@@ -33,7 +33,7 @@
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line-strong);
   font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--fg);
@@ -74,7 +74,7 @@
 }
 
 .stat dt {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fg-muted);
@@ -92,7 +92,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 32px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
@@ -100,7 +100,7 @@
 
 .microLabel {
   font-family: var(--font-accent);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
 }
 
@@ -117,7 +117,7 @@
   margin-bottom: 20px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line-strong);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -138,7 +138,7 @@
   padding: 8px 13px;
   border: 1px solid var(--line);
   background: var(--panel);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--fg-muted);
   transition:
     border-color 0.25s,

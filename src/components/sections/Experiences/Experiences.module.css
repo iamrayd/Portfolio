@@ -60,14 +60,14 @@
 
 .index {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
 }
 
 .period {
   padding-top: 2px;
   font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.06em;
   color: var(--fg-muted);
 }
@@ -78,7 +78,7 @@
 
 .company {
   font-family: var(--font-accent);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -99,7 +99,7 @@
 .highlights li {
   display: flex;
   gap: 10px;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.8;
   color: var(--fg-muted);
 }
@@ -121,7 +121,7 @@
 .tags li {
   padding: 5px 10px;
   border: 1px solid var(--line);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--fg-muted);
 }
 
